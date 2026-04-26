@@ -1,5 +1,7 @@
 """Platform-agnostic messaging layer."""
 
+from __future__ import annotations
+
 from .event_parser import parse_cli_event
 from .handler import ClaudeMessageHandler
 from .models import IncomingMessage

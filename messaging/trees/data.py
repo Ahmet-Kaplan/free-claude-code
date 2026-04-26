@@ -3,13 +3,15 @@
 Contains MessageState, MessageNode, and MessageTree classes.
 """
 
+from __future__ import annotations
+
 import asyncio
 from collections import deque
 from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import Enum
-from typing import Any
+from typing import Any, Self
 
 from loguru import logger
 
@@ -116,7 +118,7 @@ class MessageNode:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> MessageNode:
+    def from_dict(cls, data: dict) -> Self:
         """Create from dictionary (JSON deserialization)."""
         incoming_data = data["incoming"]
         incoming = IncomingMessage(
@@ -402,7 +404,7 @@ class MessageTree:
         self._status_to_node[node.status_message_id] = node.node_id
 
     @classmethod
-    def from_dict(cls, data: dict) -> MessageTree:
+    def from_dict(cls, data: dict) -> Self:
         """Deserialize tree from dictionary."""
         root_id = data["root_id"]
         nodes_data = data["nodes"]

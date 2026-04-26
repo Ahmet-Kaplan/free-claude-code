@@ -1,5 +1,7 @@
 """Message tree data structures and queue management."""
 
+from __future__ import annotations
+
 from .data import MessageNode, MessageState, MessageTree
 from .queue_manager import TreeQueueManager
 

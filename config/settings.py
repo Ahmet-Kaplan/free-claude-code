@@ -4,7 +4,7 @@ import os
 from collections.abc import Mapping
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Self
 
 from dotenv import dotenv_values
 from pydantic import Field, field_validator, model_validator
@@ -390,7 +390,7 @@ class Settings(BaseSettings):
         return v
 
     @model_validator(mode="after")
-    def check_nvidia_nim_api_key(self) -> Settings:
+    def check_nvidia_nim_api_key(self) -> Self:
         if (
             self.voice_note_enabled
             and self.whisper_device == "nvidia_nim"
@@ -403,7 +403,7 @@ class Settings(BaseSettings):
         return self
 
     @model_validator(mode="after")
-    def prefer_dotenv_anthropic_auth_token(self) -> Settings:
+    def prefer_dotenv_anthropic_auth_token(self) -> Self:
         """Let explicit .env auth config override stale shell/client tokens."""
         dotenv_value = _env_file_override(self.model_config, "ANTHROPIC_AUTH_TOKEN")
         if dotenv_value is not None:

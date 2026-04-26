@@ -5,6 +5,8 @@ Supports:
 - NVIDIA NIM: NVIDIA NIM Whisper/Parakeet
 """
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import Any
 
